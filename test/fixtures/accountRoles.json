@@ -1,0 +1,37 @@
+[
+  {
+    "model": "AccountRole",
+    "data": {
+      "accountId": "91a9bcb0-1002-31e9-b97d-bfddc09aa725",
+      "role": "uw_admin"
+    }
+  },
+  {
+    "model": "AccountRole",
+    "data": {
+      "accountId": "94a5bcb0-6524-24e9-b97d-bfddc09aa785",
+      "role": "uw_staff"
+    }
+  },
+  {
+    "model": "AccountRole",
+    "data": {
+      "accountId": "0ca0e2a0-a441-11e8-b4db-853c407bd607",
+      "role": "company_admin"
+    }
+  },
+  {
+    "model": "AccountRole",
+    "data": {
+      "accountId": "782d5750-84eb-4bc6-9b2a-21291e6b562c",
+      "role": "company_admin"
+    }
+  },
+  {
+    "model": "AccountRole",
+    "data": {
+      "accountId": "41a73584-eddf-498b-8e78-1759d66566f4",
+      "role": "uw_staff"
+    }
+  }
+]

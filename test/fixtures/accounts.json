@@ -1,0 +1,52 @@
+[
+  {
+    "model": "Account",
+    "data": {
+      "id": "91a9bcb0-1002-31e9-b97d-bfddc09aa725",
+      "username": "sm_admin@gmail.com",
+      "password": "savemoney123",
+      "roles": ["uw_admin"],
+      "tenantId": "2ba90f30-6975-11e8-8b90-9b391703c11a"
+    }
+  },
+  {
+    "model": "Account",
+    "data": {
+      "id": "94a5bcb0-6524-24e9-b97d-bfddc09aa785",
+      "username": "sm_staff@gmail.com",
+      "password": "savemoney123",
+      "roles": ["uw_staff"],
+      "tenantId": "2ba90f30-6975-11e8-8b90-9b391703c11a"
+    }
+  },
+  {
+    "model": "Account",
+    "data": {
+      "id": "0ca0e2a0-a441-11e8-b4db-853c407bd607",
+      "username": "sm_company_admin@gmail.com",
+      "password": "savemoney123",
+      "roles": ["company_admin"],
+      "tenantId": "2ba90f30-6975-11e8-8b90-9b391703c11a"
+    }
+  },
+  {
+    "model": "Account",
+    "data": {
+      "id": "782d5750-84eb-4bc6-9b2a-21291e6b562c",
+      "username": "testFindStaffByAccountId@gmail.com",
+      "password": "savemoney123",
+      "roles": ["company_admin"],
+      "tenantId": "2ba90f30-6975-11e8-8b90-9b391703c11a"
+    }
+  },
+  {
+    "model": "Account",
+    "data": {
+      "id": "41a73584-eddf-498b-8e78-1759d66566f4",
+      "username": "sm_test_refresh_token@gmail.com",
+      "password": "savemoney123",
+      "roles": ["uw_staff"],
+      "tenantId": "2ba90f30-6975-11e8-8b90-9b391703c11a"
+    }
+  }
+]
