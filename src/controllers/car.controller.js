@@ -6,8 +6,12 @@ export default class CarController {
         res.json(cars);
     }
 
-    async retrive(req, res) {
-        const car = await CarService.retrive(req.params.id);
-        res.json(car);
+    async retrive(req, res, next) {
+        try {
+            const car = await CarService.retrive(req.params.id);
+            res.json(car);
+        } catch (err) {
+            next(err);
+        }
     }
 }

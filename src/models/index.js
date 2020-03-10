@@ -1,15 +1,12 @@
-import cls from 'continuation-local-storage';
+/* eslint-disable no-param-reassign */
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
 import config from '../config';
 
-const namespace = cls.createNamespace('sm-product-service');
 const logging = config.nodeEnv === 'development' ? console.log : false; // eslint-disable-line
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
-// create sequelize instance with continuation local storage
-Sequelize.useCLS(namespace);
 const sequelize = new Sequelize(
     {
         dialect: 'postgres',
@@ -27,7 +24,7 @@ const db = fs
     .filter(filename => /model.js$/.test(filename))
     .reduce((total, filename) => {
         const model = sequelize.import(path.resolve(__dirname, filename));
-        total[capitalize(model.name)] = model; // eslint-disable-line
+        total[capitalize(model.name)] = model;
         return total;
     }, {});
 
@@ -42,7 +39,6 @@ Object.keys(db).forEach(modelName => {
 });
 
 const total = {
-    namespace,
     sequelize,
     Sequelize,
     ...db

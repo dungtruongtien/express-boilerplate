@@ -1,12 +1,5 @@
 import jwt from 'jsonwebtoken';
-import crypto from 'crypto';
-import {
-    encryptSymmetricKey,
-    encrypt,
-    decryptSymmetricKey,
-    decrypt
-} from '../utils';
-import { AuthenticationError, AuthorizationError } from '../errors/BusinessErrors';
+import { AuthenticationError, AuthorizationError } from './ErrorInstance/businessErrors';
 
 export function permitRole(...allowed) {
     return (req, res, next) => {
@@ -55,61 +48,4 @@ export function permitAction(...allowed) {
         }
         next();
     };
-}
-
-function decryptRequestData(req, publicKey, algorithm) {
-    if (req.method === 'GET' || req.method === 'DELETE') return null;
-    const { encryptedData, encryptedKey } = req.body;
-    if (!encryptedData || !encryptedKey) {
-        throw new AuthenticationError('encrypted data, encrypted key cannot null');
-    }
-    try {
-        const { key, iv } = JSON.parse(decryptSymmetricKey(publicKey, encryptedKey));
-        const decryptedData = decrypt(encryptedData, key, iv, algorithm);
-        return JSON.parse(decryptedData);
-    } catch (error) {
-        throw new AuthenticationError(error.message);
-    }
-}
-
-export function verifyApiKey(algorithm) {
-    return async (req, res, next) => {
-        try {
-            const apiKey = req.body['api-key'] ||
-                req.query['api-key'] || req.headers['api-key'] || null;
-            const apiData = await req.app.locals.redis.get(apiKey);
-            const userData = JSON.parse(apiData);
-            const jwtToken = req.body.token || req.query.token || req.headers['x-access-token'];
-            if (!userData && !jwtToken) {
-                throw new AuthenticationError({
-                    message: 'invalid API Key',
-                    name: 'AuthenticationError'
-                });
-            }
-            if (!userData && jwtToken) {
-                return next();
-            }
-            req.body = await decryptRequestData(req, userData.publicKey, algorithm); //eslint-disable-line
-            delete userData.publicKey;
-            res.locals.externalParty = true // eslint-disable-line
-            res.locals.user = userData; //eslint-disable-line
-            next();
-        } catch (err) {
-            next(err);
-        }
-    };
-}
-
-export async function encryptResponse(redis, responseData, apiKey, algorithm) {
-    const apiData = await redis.get(apiKey);
-    const { publicKey } = JSON.parse(apiData);
-    const symmetricKey = crypto.randomBytes(32).toString('hex').slice(0, 32);
-    const iv = crypto.randomBytes(16).toString('hex').slice(0, 16);
-    // eslint-disable-next-line max-len
-    const encryptedData = encrypt(JSON.stringify(responseData), symmetricKey, iv, algorithm);
-    const encryptedKey = encryptSymmetricKey(
-        publicKey,
-        JSON.stringify({ key: symmetricKey, iv })
-    );
-    return { encryptedData, encryptedKey };
 }

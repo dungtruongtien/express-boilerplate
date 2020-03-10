@@ -1,7 +1,7 @@
 export default function (sequelize, DataTypes) {
     const Model = sequelize.define('model', {
         id: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: true,
             autoIncrement: true,
             primaryKey: true

@@ -7,11 +7,11 @@ export default function (sequelize, DataTypes) {
             primaryKey: true
         },
         brand: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         model: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         color: {

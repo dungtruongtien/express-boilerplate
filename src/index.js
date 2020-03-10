@@ -10,6 +10,6 @@ function listen() {
 }
 
 const db = migrateDB()
-    .catch(err => console.log('err--------------', err));
+    .catch(err => console.log('DB ERROR', err));
 
 db.then(() => listen());
