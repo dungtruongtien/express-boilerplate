@@ -29,7 +29,7 @@
     "firis-service-sdk-test2": "^1.0.77",
     "joi": "^14.0.2",
     "jsonwebtoken": "^8.3.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "method-override": "^2.3.10",
     "moment": "^2.22.2",
     "morgan": "^1.9.0",
