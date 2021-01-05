@@ -14,7 +14,7 @@
     "test": "PG_DB=test_carrental jest --forceExit"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "bluebird": "^3.5.1",
